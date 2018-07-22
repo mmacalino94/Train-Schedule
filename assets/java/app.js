@@ -10,3 +10,20 @@ var config = {
 
 var database = firebase.database();
 var currentTime = moment();
+
+database.ref().on("child_added", function(childSnap) {
+
+    var name = childSnap.val().name;
+    var destination = childSnap.val().destination;
+    var firstTrain = childSnap.val().firstTrain;
+    var frequency = childSnap.val().frequency;
+    var min = childSnap.val().min;
+    var next = childSnap.val().next;
+
+    $("#trainTable > tbody").append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + next + "</td><td>" + min + "</td></tr>");
+});
+
+database.ref().on("value", function(snapshot) {
+   
+
+});
